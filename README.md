@@ -29,3 +29,6 @@ http://localhost:5555/tasks
 If want to see a specific task_id
 http://localhost:5555/tasks/<task_id>
 
+
+The streaming test in nav bar is used to scrape houses and add it to database
+
