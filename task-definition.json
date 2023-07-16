@@ -1,0 +1,76 @@
+{
+    "containerDefinitions": [
+        {
+            "essential": true,
+            "mountPoints": [
+                {
+                    "containerPath": "/app",
+                    "sourceVolume": "_Main_Task"
+                }
+            ],
+            "name": "app",
+            "portMappings": [
+                {
+                    "containerPort": 5555,
+                    "hostPort": 5555
+                }
+            ]
+        },
+        {
+            "environment": [
+                {
+                    "name": "MYSQL_ROOT_PASSWORD",
+                    "value": "testroot"
+                },
+                {
+                    "name": "MYSQL_DATABASE",
+                    "value": "newdb"
+                },
+                {
+                    "name": "MYSQL_PORT",
+                    "value": "3306"
+                }
+            ],
+            "essential": true,
+            "image": "mysql:5.7",
+            "mountPoints": [
+                {
+                    "containerPath": "/var/lib/mysql",
+                    "sourceVolume": "_Sql_Data"
+                }
+            ],
+            "name": "database",
+            "portMappings": [
+                {
+                    "containerPort": 3306,
+                    "hostPort": 3306
+                }
+            ]
+        },
+        {
+            "essential": true,
+            "name": "proxy",
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 80
+                }
+            ]
+        }
+    ],
+    "family": "",
+    "volumes": [
+        {
+            "host": {
+                "sourcePath": "./main_task"
+            },
+            "name": "_Main_Task"
+        },
+        {
+            "host": {
+                "sourcePath": "./sql_data"
+            },
+            "name": "_Sql_Data"
+        }
+    ]
+}
